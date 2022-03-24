@@ -1,0 +1,103 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Textures/SVG/chevron-double-right.svg" type="Texture" id=1]
+[ext_resource path="res://Textures/SVG/arrow-repeat.svg" type="Texture" id=2]
+[ext_resource path="res://Scenes/UI/BasicScreen.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="WholeScreen" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="BackGround" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="UIContainer" type="MarginContainer" parent="BackGround"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="VerticalContainer" type="VBoxContainer" parent="BackGround/UIContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 1002.0
+margin_bottom = 578.0
+
+[node name="WebpageName" type="Label" parent="BackGround/UIContainer/VerticalContainer"]
+margin_right = 994.0
+margin_bottom = 14.0
+text = "Webpage Name"
+
+[node name="BarContainer" type="PanelContainer" parent="BackGround/UIContainer/VerticalContainer"]
+margin_top = 18.0
+margin_right = 994.0
+margin_bottom = 56.0
+
+[node name="BarDivider" type="HBoxContainer" parent="BackGround/UIContainer/VerticalContainer/BarContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 987.0
+margin_bottom = 31.0
+
+[node name="Refresh" type="TextureButton" parent="BackGround/UIContainer/VerticalContainer/BarContainer/BarDivider"]
+margin_right = 81.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+texture_normal = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="PageName" type="LineEdit" parent="BackGround/UIContainer/VerticalContainer/BarContainer/BarDivider"]
+margin_left = 85.0
+margin_right = 894.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+clear_button_enabled = true
+placeholder_text = "Enter Webpage Address"
+caret_blink = true
+
+[node name="EnterPage" type="TextureButton" parent="BackGround/UIContainer/VerticalContainer/BarContainer/BarDivider"]
+margin_left = 898.0
+margin_right = 980.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="WebpageContainer" type="MarginContainer" parent="BackGround/UIContainer/VerticalContainer"]
+margin_top = 60.0
+margin_right = 994.0
+margin_bottom = 570.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="Background" type="PanelContainer" parent="BackGround/UIContainer/VerticalContainer/WebpageContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 986.0
+margin_bottom = 502.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="BackGround/UIContainer/VerticalContainer/BarContainer/BarDivider/EnterPage" to="." method="_on_new_page_pressed"]
