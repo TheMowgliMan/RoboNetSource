@@ -27,23 +27,41 @@ func parse_HTML(string):
 	
 	for c in string:
 		if not skipping_attributes:
-			if c == "<":
+			if c == " " and current_temp == "attribute":
+				if temp != "":
+					tokens.append([temp, current_temp])
+				temp = ""
+				current_temp = "attribute" # Possibly Redundant
+			elif c == "=" and current_temp == "attribute":
+				if temp != "":
+					tokens.append([temp, current_temp])
+				temp = ""
+				current_temp = "attribute"
+			elif c == "\"" and current_temp == "attribute":
+				if temp != "":
+					tokens.append([temp, current_temp])
+				temp = ""
+				current_temp = "attribute_data"
+			elif c == "\"" and current_temp == "attribute_data":
+				if temp != "":
+					tokens.append([temp, current_temp])
+				temp = ""
+				current_temp = "attribute" # Possibly Redundant
+			elif c == "<":
 				if temp != "":
 					tokens.append([temp, current_temp])
 				temp = ""
 				current_temp = "tag"
-			if c == ">":
+			elif c == ">":
 				if temp != "":
 					tokens.append([temp, current_temp])
 				temp = ""
 				current_temp = "str"
-			if c == " " and current_temp == "tag":
+			elif c == " " and current_temp == "tag":
 				if temp != "":
 					tokens.append([temp, current_temp])
 				temp = ""
-				current_temp = "str"
-				
-				skipping_attributes = true
+				current_temp = "attribute"
 			elif not c in ["<", ">", "\n", "/n", "\t"]:
 				temp = temp + c
 		else:
@@ -52,3 +70,6 @@ func parse_HTML(string):
 	
 	print(tokens)
 	return tokens
+	
+func _ready():
+	parse_HTML('<div class="h3">hello</div>')

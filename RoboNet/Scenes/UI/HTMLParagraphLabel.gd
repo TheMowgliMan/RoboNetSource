@@ -18,6 +18,6 @@ func _process(delta):
 
 func _on_HTMLParagraphLabel_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			emit_signal("go_to_link", go_to_link)
 			print("CLICK")

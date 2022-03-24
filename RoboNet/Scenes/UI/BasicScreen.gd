@@ -40,7 +40,7 @@ func render():
 			html_renderer.add_label(item[0], false)
 		elif item[1] == "str" and is_script == false and is_anchor == true:
 			html_renderer.add_label(item[0], true)
-		else:
+		elif item[1] == "tag":
 			# Page Breaks (Block Elements)
 			if item[0] == "br":
 				html_renderer.add_label("", false)
@@ -62,3 +62,8 @@ func render():
 				is_anchor = false
 				
 	html_renderer.set_title("Page Loaded!")
+
+
+func _on_HTMLRender_go_to_link(link):
+	$BackGround/UIContainer/VerticalContainer/BarContainer/BarDivider/PageName.text = link
+	_on_new_page_pressed()

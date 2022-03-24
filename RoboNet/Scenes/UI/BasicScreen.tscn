@@ -112,3 +112,4 @@ margin_bottom = 494.0
 script = ExtResource( 5 )
 
 [connection signal="pressed" from="BackGround/UIContainer/VerticalContainer/BarContainer/BarDivider/EnterPage" to="." method="_on_new_page_pressed"]
+[connection signal="go_to_link" from="BackGround/UIContainer/VerticalContainer/WebpageContainer/Background/HTMLRender" to="." method="_on_HTMLRender_go_to_link"]
