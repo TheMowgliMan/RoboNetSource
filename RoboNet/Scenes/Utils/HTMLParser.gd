@@ -44,7 +44,7 @@ func parse_HTML(string):
 				current_temp = "str"
 				
 				skipping_attributes = true
-			elif not c in ["<", ">"]:
+			elif not c in ["<", ">", "\n", "/n", "\t"]:
 				temp = temp + c
 		else:
 			if c == ">":
