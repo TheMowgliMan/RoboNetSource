@@ -69,7 +69,7 @@ margin_right = 894.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 clear_button_enabled = true
-placeholder_text = "Enter Webpage Address"
+placeholder_text = "Enter Webpage Address or Search Google"
 caret_blink = true
 
 [node name="EnterPage" type="TextureButton" parent="BackGround/UIContainer/VerticalContainer/BarContainer/BarDivider"]

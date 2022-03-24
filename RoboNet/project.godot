@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Label",
+"class": "HTMLLabel",
+"language": "GDScript",
+"path": "res://Scenes/UI/HTMLParagraphLabel.gd"
+}, {
 "base": "Node",
 "class": "HTMLParser",
 "language": "GDScript",
 "path": "res://Scenes/Utils/HTMLParser.gd"
 } ]
 _global_script_class_icons={
+"HTMLLabel": "",
 "HTMLParser": ""
 }
 

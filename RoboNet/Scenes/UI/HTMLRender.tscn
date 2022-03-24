@@ -7,9 +7,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Container" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -43,3 +40,5 @@ margin_right = 1016.0
 margin_bottom = 574.0
 
 [node name="VerticalSplitter" type="VBoxContainer" parent="Container/WebpageContainer/Scrolling"]
+margin_right = 1008.0
+size_flags_horizontal = 3
