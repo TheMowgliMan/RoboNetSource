@@ -8,9 +8,20 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "HTMLParser",
+"language": "GDScript",
+"path": "res://Scenes/Utils/HTMLParser.gd"
+} ]
+_global_script_class_icons={
+"HTMLParser": ""
+}
+
 [application]
 
 config/name="Robo Net"
+run/main_scene="res://Scenes/UI/BasicScreen.tscn"
 config/icon="res://icon.png"
 
 [display]

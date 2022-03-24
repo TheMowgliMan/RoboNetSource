@@ -1,10 +1,33 @@
 extends CanvasLayer
 
+var webpage_data = ""
+var response_code_data = 200
+
 func _ready():
 	$HTTPRequest.connect("request_completed", self, "_on_request_completed")
 
 func _on_new_page_pressed():
-	$HTTPRequest.request($BackGround/UIContainer/VerticalContainer/BarContainer/BarDivider/PageName.text)
+	var uniform_resource_locator = $BackGround/UIContainer/VerticalContainer/BarContainer/BarDivider/PageName.text
+	$HTTPRequest.request(uniform_resource_locator)
 
 func _on_request_completed(result, response_code, headers, body):
-	print(body)
+	webpage_data = body.get_string_from_ascii()
+	response_code_data = response_code
+	
+	render()
+	
+func render():
+	$BackGround/UIContainer/VerticalContainer/WebpageContainer/Background/HTMLRender.free_children()
+	
+	var parsed = $HTMLParser.parse_HTML(webpage_data)
+	
+	var is_script = false
+	
+	for item in parsed:
+		if item[1] == "str" and is_script == false:
+			$BackGround/UIContainer/VerticalContainer/WebpageContainer/Background/HTMLRender.add_label(item[0])
+		else:
+			if item[0] == "script":
+				is_script = true
+			elif item[0] == "/script":
+				is_script = false
