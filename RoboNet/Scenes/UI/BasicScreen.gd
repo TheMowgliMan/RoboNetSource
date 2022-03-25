@@ -35,19 +35,22 @@ func render():
 	var is_script = false
 	var is_anchor = false
 	
+	var anchor_url = ""
+	var attribute_next = false
+	
 	for item in parsed:
 		if item[1] == "str" and is_script == false and is_anchor == false:
-			html_renderer.add_label(item[0], false)
+			html_renderer.add_label(item[0], false, null)
 		elif item[1] == "str" and is_script == false and is_anchor == true:
-			html_renderer.add_label(item[0], true)
+			html_renderer.add_label(item[0], true, anchor_url)
 		elif item[1] == "tag":
 			# Page Breaks (Block Elements)
 			if item[0] == "br":
-				html_renderer.add_label("", false)
+				html_renderer.add_label("", false, null)
 			elif item[0] == "/p":
-				html_renderer.add_label("", false)
+				html_renderer.add_label("", false, null)
 			elif item[0] == "/div":
-				html_renderer.add_label("", false)
+				html_renderer.add_label("", false, null)
 			
 			# Script/Style Detection
 			if item[0] == "script" or item[0] == "style":
@@ -60,6 +63,12 @@ func render():
 				is_anchor = true
 			elif item[0] == "/a":
 				is_anchor = false
+				anchor_url = ""
+		elif item[1] == "attribute":
+			if item[0] == "href" and is_anchor:
+				attribute_next = true
+		elif item[1] == "attribute_data" and is_anchor and attribute_next:
+			anchor_url = item[0]
 				
 	html_renderer.set_title("Page Loaded!")
 

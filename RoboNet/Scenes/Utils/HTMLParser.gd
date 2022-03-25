@@ -72,4 +72,4 @@ func parse_HTML(string):
 	return tokens
 	
 func _ready():
-	parse_HTML('<div class="h3">hello</div>')
+	parse_HTML('<a class="h3" href="https://www.openttd.org">hello</a>')
